@@ -475,6 +475,10 @@ class Orbit(object):
         """
 
         obj = SBDB.query(name, full_precision=True, **kargs)
+        
+        
+        if obj["name"] > 1:
+            raise ValueError("More than one Objects found")
 
         a = obj["orbit"]["elements"]["a"].to(u.AU) * u.AU
         ecc = float(obj["orbit"]["elements"]["e"]) * u.one
